@@ -529,6 +529,9 @@ if [[ -s "$providedextensionslog_file_path" ]]; then
 	rm "$current_install_log"
 fi
 
+echo "-----> Installing GD extension"
+pecl install gd && echo "extension=gd.so" >> `php -r "echo ini_get('extension_dir');"`/php.ini
+
 # log number of installed platform packages
 mmeasure "platform.count" $(composer show -d "$build_dir/.heroku/php" --installed "heroku-sys/*" 2> /dev/null | wc -l)
 
